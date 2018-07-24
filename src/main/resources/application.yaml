@@ -1,0 +1,36 @@
+spring:
+  datasource:          # 数据库配置信息
+    driver-class-name: com.mysql.cj.jdbc.Driver   # 对应connector-java-8.0.11.jar
+    url: jdbc:mysql://localhost:3306/monitor?characterEncoding=utf8&useSSL=false&serverTimezone=UTC # url中需要有serverTimezone的设置
+    username: root
+    password: root
+
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    enabled: true
+    validate-on-migrate: false  # 迁移时是否校验，默认为true.
+
+  devtools:
+      restart:
+        enabled: true
+        additional-paths: src/main/java
+
+mybatis:
+    type-aliases-package: io.haitaoc.model
+    configuration:
+      map-underscore-to-camel-case: true      # 配置数据库和model类中的字段映射关系转换：下划线变驼峰转换
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+server:
+  address: localhost
+  port: 8081
+
+
+
+
