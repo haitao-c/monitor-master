@@ -66,10 +66,5 @@ public class LogServiceTakeTime {
         log.info("doBefore");
     }
 
-//    @AfterReturning(returning = "ret", pointcut = "performance()")
-//    public void doAfterReturning(Object ret) throws Throwable {
-//        // 处理完请求，返回内容
-//    	log.info("doAfterReturning");
-//    }
 
 }

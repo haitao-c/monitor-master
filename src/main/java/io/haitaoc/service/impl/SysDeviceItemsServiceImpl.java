@@ -5,6 +5,7 @@ import io.haitaoc.model.SysDeviceItems;
 import io.haitaoc.service.SysDeviceItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +25,12 @@ public class SysDeviceItemsServiceImpl implements SysDeviceItemsService {
     public List<SysDeviceItems> getDeviceItemsByIp(String device_ip) {
         List<SysDeviceItems> res = sysDeviceItemsDao.getDeviceItemsByIp(device_ip);
         return res;
+    }
+
+    @Override
+    @Transactional
+    public void insertBarch(List<SysDeviceItems> sysDeviceItems) {
+        sysDeviceItemsDao.insertBatch(sysDeviceItems);
     }
 
 }

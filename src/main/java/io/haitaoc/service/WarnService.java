@@ -16,4 +16,5 @@ public interface WarnService {
 
     void updateConfirm(long id, String fixType);
 
+    void insertBatch(List<Warn> warns);
 }

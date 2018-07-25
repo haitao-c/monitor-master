@@ -68,4 +68,10 @@ public class WarnServiceImpl implements WarnService {
         sysDeviceItemsDao.updateOne(record.getId(),oldWarn.getWarnType(),now);
         warnDao.updateConfirm(id,now,fixType);
     }
+
+    @Override
+    @Transactional
+    public void insertBatch(List<Warn> warns) {
+        warnDao.insertBatch(warns);
+    }
 }

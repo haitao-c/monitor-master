@@ -11,4 +11,6 @@ public interface SysDeviceItemsService {
 
     List<SysDeviceItems> getDeviceItemsByIp(String device_ip);
 
+    void insertBarch(List<SysDeviceItems> sysDeviceItems);
+
 }

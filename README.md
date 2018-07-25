@@ -29,16 +29,20 @@
 3. 完成首页设计, 根据分类划分系统, 并在每个系统下显示所有设备
 
 * 7/23
-上午： 完成首页对应于设备的告警数显示(前端和后台)
-下午： 详情页显示，根据IP找出所有对应的告警信息
+
+上午： 
+完成首页对应于设备的告警数显示(前端和后台)
+下午： 
+详情页显示，根据IP找出所有对应的告警信息
 
 * 7/24
+
 上午： 点击侧边栏不同系统过滤出对应系统对应的设备信息
 > 碰到问题：同一个组件传不同参数, 组件内容不刷新, 解决方式：
 ```html
 <router-view :key="key"></router-view>
 ```
-```
+```javascript
     computed: {
       key(){
         return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date();
@@ -51,4 +55,18 @@
             return this.$route.name !== undefined? this.$route.name +(this.count++): this.$route +(this.count++)
           }
 ```
-下午： 完成手动修复时warn表格的更新以及对应sys_device_items表的插入记录
+下午：
+ 完成手动修复时warn表格的更新以及对应sys_device_items表的插入记录
+
+* 7/25
+
+上午：
+1. LocalDatetime等新时间包中的类的精确值是纳秒(nano second)
+1 毫秒 = 1*10^6 纳秒
+2. 换算时通过LocalDatetime.withNano(要精确的毫秒*10^6)得到毫秒精确到毫秒的LocalDatetime
+3. 通过PrintWriter往文件中追加写内容, 需要将FileOutputStream(f,true)中的第二个参数设置为true, 表示追加
+
+下午：
+1. 完成LocalDateTime与String互转
+2. 完成定时写入文件告警与定时读取告警
+3. 完成在定时任务中将告警信息以及设备监控信息插入到对应表中

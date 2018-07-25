@@ -63,7 +63,7 @@ public class JSONResult {
 
     }
 
-//    public static LeeJSONResult build(Integer status, String msg) {
+//    public public LeeJSONResult build(Integer status, String msg) {
 //        return new LeeJSONResult(status, msg, null);
 //    }
 

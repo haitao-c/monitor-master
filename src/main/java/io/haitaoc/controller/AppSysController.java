@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//TODO: 统一处理异常
 
 @RestController
 public class AppSysController {

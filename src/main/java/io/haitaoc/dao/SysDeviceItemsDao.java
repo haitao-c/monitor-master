@@ -1,18 +1,17 @@
 package io.haitaoc.dao;
 
 
+import io.haitaoc.dao.provider.SysDeviceItemsDaoProvider;
+import io.haitaoc.dao.provider.WarnDaoProvider;
 import io.haitaoc.model.SysDeviceItems;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface SysDeviceItemsDao {
 
-    @Select("select * from sys_device_items where sys_id = #{sysId}")
+    @Select("select DISTINCT device_ip from sys_device_items where sys_id = #{sysId}")
     List<SysDeviceItems> findDeviceItemsBySysId(int sysId);
 
     /**
@@ -33,5 +32,9 @@ public interface SysDeviceItemsDao {
 
     @Update("update sys_device_items set ${warn_type}=1,datetime=#{findTime} where id=#{id}")
     void updateOne(@Param("id") long id, @Param("warn_type") String warn_type, @Param("findTime") LocalDateTime findTime);
+
+    // 根据log文件读取到的告警内容赋值给SysDeviceItems实例, 批量插入到对应的sys_device_items表中
+    @InsertProvider(type = SysDeviceItemsDaoProvider.class, method = "insertAll")
+    void insertBatch(@Param("list") List<SysDeviceItems> sysDeviceItems);
 
 }
