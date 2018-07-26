@@ -15,7 +15,7 @@ public interface SysDeviceItemsDao {
     List<SysDeviceItems> findDeviceItemsBySysId(int sysId);
 
     /**
-     * 根据找出不同时间点下所有设备Ip对应的监控项
+     * 找出不同时间点下所有设备Ip对应的监控项
      */
     @Select("select * from sys_device_items where device_ip = #{device_ip}")
     List<SysDeviceItems> getDeviceItemsByIp(String device_ip);

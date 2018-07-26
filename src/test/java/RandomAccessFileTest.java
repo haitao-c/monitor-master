@@ -21,15 +21,6 @@ public class RandomAccessFileTest {
     public static void read() throws IOException, InterruptedException {
         File f = new File("D:\\test.txt");
         RandomAccessFile raf = new RandomAccessFile(f, "r");
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.nnnnnnnnn");
-        LocalDateTime time = LocalDateTime.now().withNano((int) (333));
-        System.out.println(time);
-        String localTime = df.format(time);
-        LocalDateTime ldt = LocalDateTime.parse("2017-09-28 17:07:05.123000000",df);
-        System.out.println(ldt);
-        /*System.out.println("LocalDateTime转成String类型的时间："+localTime);
-        System.out.println("String类型的时间转成LocalDateTime："+ldt.withNano(123));
-        System.out.println(LocalTime.now());*/
         // 输出
         // 第二个参数设置为tru,表示追加内容
         FileOutputStream fos = new FileOutputStream(f,true);
