@@ -22,11 +22,11 @@ public interface WarnDao {
     int warnCount(String device_ip);
 
     // 找出对应IP的所有警告(尚未confirm的警告)
-    @Select("SELECT * FROM warn WHERE (confirm is null or confirm='') and device_ip=#{device_ip}")
+    @Select("SELECT * FROM warn WHERE (confirm is null or confirm='') and device_ip=#{device_ip} ORDER BY find_time DESC")
     List<Warn> findIpWarns(String device_ip);
 
     // 找出对应IP的所有警告(已经confirm的警告)
-    @Select("SELECT * FROM warn WHERE confirm is not null and device_ip=#{device_ip}")
+    @Select("SELECT * FROM warn WHERE confirm is not null and device_ip=#{device_ip} ORDER BY update_time DESC")
     List<Warn> findConfirmedIpWarns(String device_ip);
 
     // 根据ID更新warn表中被修复的内容(更新confirm字段为手动修复)以及修复成功时的时间

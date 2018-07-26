@@ -17,7 +17,7 @@ public interface SysDeviceItemsDao {
     /**
      * 找出不同时间点下所有设备Ip对应的监控项
      */
-    @Select("select * from sys_device_items where device_ip = #{device_ip}")
+    @Select("select * from sys_device_items where device_ip = #{device_ip} order by datetime desc")
     List<SysDeviceItems> getDeviceItemsByIp(String device_ip);
 
     @Insert("insert into sys_device_items(device_ip,cpu_status,memory_status,network_status,db_status,business_status,datetime,sys_id) values(" +
@@ -37,4 +37,9 @@ public interface SysDeviceItemsDao {
     @InsertProvider(type = SysDeviceItemsDaoProvider.class, method = "insertAll")
     void insertBatch(@Param("list") List<SysDeviceItems> sysDeviceItems);
 
+    /**
+     * 获取对应设备IP下的总记录数目
+     */
+    @Select("select COUNT(*) from sys_device_items where device_ip = #{device_ip}")
+    int recordsNumber(String device_ip);
 }

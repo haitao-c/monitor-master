@@ -105,7 +105,7 @@ public class Task {
                 warns.clear();
             }
             if (!sysDeviceItems.isEmpty()) {
-                sysDeviceItemsService.insertBarch(sysDeviceItems);
+                sysDeviceItemsService.insertBatch(sysDeviceItems);
                 sysDeviceItems.clear();
             }
         }
@@ -152,6 +152,5 @@ public class Task {
                 m.invoke(sysDeviceItem, true);
             }
         }
-
     }
 }

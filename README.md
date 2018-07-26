@@ -5,7 +5,7 @@
 * PageHelper
 * Mybatis
 * mybatis-generator-core
-> 陪着使用时, 所用版本用本项目中的版本
+> 配合使用时, 所用版本用本项目中的版本
 
 ## 解决跨域请求
 * 只需配置: io.haitaoc.config.CrosConfig
@@ -42,7 +42,7 @@
 ```html
 <router-view :key="key"></router-view>
 ```
-```
+```javascript
     computed: {
       key(){
         return this.$route.name !== undefined? this.$route.name +new Date(): this.$route +new Date();
@@ -76,3 +76,9 @@
 1. 优化定时任务, 重置批量操作的条件: **未读到文件结尾 且 列表大小不为批量插入大小**
 2. 随机化插入告警异常数据
 3. 通过flyway插入正常记录
+
+> 小问题：展示所有告警信息时, 旧告警未解决, 新告警中没有包含旧报警(实际中, 每个报警在解决之前只出现一次)
+
+下午：
+1. 查询告警记录时按最近的时间先展示
+2. 对总记录查询设置分页展示, 默认每页展示5条

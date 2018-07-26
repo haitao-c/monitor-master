@@ -9,8 +9,10 @@ public interface SysDeviceItemsService {
 
     List<SysDeviceItems> findDeviceItemsBySysId(int sysId);
 
-    List<SysDeviceItems> getDeviceItemsByIp(String device_ip);
+    List<SysDeviceItems> getDeviceItemsByIp(String device_ip,int page,int pageSize);
 
-    void insertBarch(List<SysDeviceItems> sysDeviceItems);
+    void insertBatch(List<SysDeviceItems> sysDeviceItems);
+
+    int recordsNumber(String device_ip);
 
 }
