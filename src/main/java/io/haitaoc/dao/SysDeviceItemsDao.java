@@ -19,8 +19,8 @@ public interface SysDeviceItemsDao {
     @Select("select * from sys_device_items where device_ip = #{device_ip} order by datetime desc")
     List<SysDeviceItems> getDeviceItemsByIp(String device_ip);
 
-    @Insert("insert into sys_device_items(device_ip,cpu_status,memory_status,network_status,db_status,business_status,datetime,sys_id) values(" +
-            "#{deviceIp},#{cpuStatus},#{memoryStatus},#{networkStatus},#{dbStatus},#{businessStatus},#{dateTime},#{sysId})")
+    @Insert("insert into sys_device_items(device_ip,cpu_status,memory_status,network_status,db_status,datetime,sys_id) values(" +
+            "#{deviceIp},#{cpuStatus},#{memoryStatus},#{networkStatus},#{dbStatus},#{dateTime},#{sysId})")
     void insert(SysDeviceItems record);
 
     /**
