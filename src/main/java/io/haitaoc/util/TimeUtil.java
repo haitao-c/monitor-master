@@ -5,10 +5,8 @@ import java.time.format.DateTimeFormatter;
 
 public class TimeUtil {
 
-    /**
-     * 获取当前系统时间对应的字符串, 保留三位毫秒数
-     * @return
-     */
+
+    /*** 获取当前系统时间对应的字符串, 保留三位毫秒数*/
     public static String nowLocalDateTimeWith3MilliToString(){
         // LocalDateTime.now()取了nanosec精确到毫秒后的三位 yyyy-MM:dd HH:mm:ss.zzz
         LocalDateTime time = LocalDateTime.now();

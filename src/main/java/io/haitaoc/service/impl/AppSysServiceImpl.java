@@ -1,6 +1,7 @@
 package io.haitaoc.service.impl;
 
 import io.haitaoc.dao.AppSysDao;
+import io.haitaoc.dao.SysBusinessDao;
 import io.haitaoc.dao.SysDeviceItemsDao;
 import io.haitaoc.model.AppSys;
 import io.haitaoc.service.AppSysService;
@@ -18,6 +19,9 @@ public class AppSysServiceImpl implements AppSysService {
     @Autowired
     private SysDeviceItemsDao sysDeviceItemsDao;
 
+    @Autowired
+    private SysBusinessDao sysBusinessDao;
+
     @Override
     public List<AppSys> findAllAppSys() {
 
@@ -29,15 +33,17 @@ public class AppSysServiceImpl implements AppSysService {
     @Override
     public AppSys getSysWithDeviceItems(int id) {
         AppSys appSys = appSysDao.getSysWithDeviceItems(id);
+        //appSys.setSysBusiness(sysBusinessDao.findBySysId(id));
         return appSys;
     }
 
     @Override
-    public List<AppSys> getAllSysAndDeviceItems() {
+    public List<AppSys> getAllSysInfo() {
         List<AppSys> allSysAndDeviceItems = new ArrayList<>();
         List<AppSys> allAppSys= findAllAppSys();
         for(AppSys appSys:allAppSys){
             appSys.setDeviceItems(sysDeviceItemsDao.findDeviceItemsBySysId(appSys.getSysId()));
+            appSys.setSysBusiness(sysBusinessDao.findBySysId(appSys.getSysId()));
             allSysAndDeviceItems.add(appSys);
         }
         return allSysAndDeviceItems;

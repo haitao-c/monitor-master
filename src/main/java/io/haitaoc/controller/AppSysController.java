@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,43 +19,17 @@ public class AppSysController {
     @Autowired
     private AppSysService appSysService;
 
-    final static Logger log = LoggerFactory.getLogger(AppSysController.class);
-
-    @GetMapping("/getSysDeviceItemInfo")
+    @GetMapping("/getSysInfo")
     public JSONResult basicInfo(){
-        List<AppSys> allSysDeviceItemInfo = appSysService.getAllSysAndDeviceItems();
+        List<AppSys> allSysDeviceItemInfo = appSysService.getAllSysInfo();
         return JSONResult.ok(allSysDeviceItemInfo);
     }
 
-    @GetMapping("/getSysWithDeviceItems/{sysId}")
+    @GetMapping("/getSysDetail/{sysId}")
     public JSONResult sysDetailInfo(@PathVariable int sysId){
         AppSys appSys = appSysService.getSysWithDeviceItems(sysId);
         appSys.setSysId(sysId);
         return JSONResult.ok(appSys);
     }
 
-
-
-    /**
-     * PageHelper的分页使用
-     * @param page
-     * @return
-     */
-    @RequestMapping("/queryUserListPaged/{page}")
-    public JSONResult queryUserListPaged(@PathVariable(name = "page") Integer page) {
-
-        if (page == null) {
-            page = 1;
-        }
-
-        int pageSize = 1;
-
-     /*   User user = new User();
-//		user.setNickname("lee");
-
-        List<User> userList = userService.queryUserListPaged(user, page, pageSize);*/
-
-        log.info("===================================");
-        return JSONResult.ok();
-    }
 }

@@ -114,9 +114,6 @@ public class JSONResult {
      * @param jsonData
      * @param clazz
      * @return
-     *
-     * @author leechenxiang
-     * @date 2016年4月22日 下午8:34:58
      */
     public static JSONResult formatToPojo(String jsonData, Class<?> clazz) {
         try {
@@ -144,9 +141,6 @@ public class JSONResult {
      * @Description: 没有object对象的转化
      * @param json
      * @return
-     *
-     * @author leechenxiang
-     * @date 2016年4月22日 下午8:35:21
      */
     public static  JSONResult format(String json) {
         try {
@@ -164,9 +158,6 @@ public class JSONResult {
      * @param jsonData
      * @param clazz
      * @return
-     *
-     * @author leechenxiang
-     * @date 2016年4月22日 下午8:35:31
      */
     public static JSONResult formatToList(String jsonData, Class<?> clazz) {
         try {

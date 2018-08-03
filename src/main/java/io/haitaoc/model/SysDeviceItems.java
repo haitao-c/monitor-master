@@ -38,10 +38,6 @@ public class SysDeviceItems {
 
     @Getter
     @Setter
-    private boolean businessStatus;
-
-    @Getter
-    @Setter
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateTime;
 

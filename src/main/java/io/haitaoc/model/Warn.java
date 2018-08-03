@@ -17,6 +17,10 @@ public class Warn {
 
     @Getter
     @Setter
+    private int sysId;
+
+    @Getter
+    @Setter
     private String warnInfo;
 
     @Getter
@@ -36,5 +40,9 @@ public class Warn {
     @Getter
     @Setter
     private String warnType;
+
+    @Getter
+    @Setter
+    private String warnLevel;
 
 }

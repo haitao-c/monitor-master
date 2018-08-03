@@ -1,6 +1,5 @@
 package io.haitaoc.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,10 +17,14 @@ public class AppSys {
 
     @Getter
     @Setter
-    @JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
-    private List<SysDeviceItems> deviceItems;
+    private int categoryId;
 
     @Getter
     @Setter
-    private int categoryId;
+    private List<SysDeviceItems> deviceItems;
+
+    @Getter
+    @Setter                 // 一个系统对应一个系统的业务状态
+    private SysBusiness sysBusiness;
+
 }

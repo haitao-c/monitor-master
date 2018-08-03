@@ -1,7 +1,9 @@
 package io.haitaoc.service.impl;
 
+import io.haitaoc.dao.SysBusinessDao;
 import io.haitaoc.dao.SysDeviceItemsDao;
 import io.haitaoc.dao.WarnDao;
+import io.haitaoc.model.SysBusiness;
 import io.haitaoc.model.SysDeviceItems;
 import io.haitaoc.model.Warn;
 import io.haitaoc.service.WarnService;
@@ -23,6 +25,9 @@ public class WarnServiceImpl implements WarnService {
     @Autowired
     private SysDeviceItemsDao sysDeviceItemsDao;
 
+    @Autowired
+    private SysBusinessDao sysBusinessDao;
+
     @Override
     public Map<String, Integer> deviceWarnCounts() {
         List<Warn> warnDeviceList = warnDao.findDistinctIP();
@@ -36,15 +41,39 @@ public class WarnServiceImpl implements WarnService {
     }
 
     @Override
+    public Map<Integer, Integer> businessWarnCounts() {
+        List<Warn> warnDeviceList = warnDao.findDistinctSysId();
+        Map<Integer,Integer> countMap = new HashMap<>();
+        for (Warn warn: warnDeviceList){
+            int sysId = warn.getSysId();
+            int count = warnDao.businessWarnCount(sysId);
+            countMap.put(sysId,count);
+        }
+        return countMap;
+    }
+
+    @Override
     public List<Warn> findIpWarns(String deviceIp) {
         List<Warn> IpWarnList = warnDao.findIpWarns(deviceIp);
         return IpWarnList;
     }
 
     @Override
+    public List<Warn> findIdWarns(int sysId) {
+        List<Warn> IdWarnList = warnDao.findIdWarns(sysId);
+        return IdWarnList;
+    }
+
+    @Override
     public List<Warn> findConfirmedIpWarns(String deviceIp) {
         List<Warn> confirmedIpWarns = warnDao.findConfirmedIpWarns(deviceIp);
         return confirmedIpWarns;
+    }
+
+    @Override
+    public List<Warn> findConfirmedIdWarns(int sysId) {
+        List<Warn> confirmedIdWarns = warnDao.findConfirmedIdWarns(sysId);
+        return confirmedIdWarns;
     }
 
     /**
@@ -66,6 +95,19 @@ public class WarnServiceImpl implements WarnService {
         sysDeviceItemsDao.insert(record);
         record = sysDeviceItemsDao.findOne(oldWarn.getDeviceIP(),oldWarn.getWarnType(),now);
         sysDeviceItemsDao.updateOne(record.getId(),oldWarn.getWarnType(),now);
+        warnDao.updateConfirm(id,now,fixType);
+    }
+
+    @Override
+    public void updateBusinessConfirm(long id, String fixType) {
+        Warn oldWarn = warnDao.findById(id);
+        LocalDateTime now = LocalDateTime.now();
+        SysBusiness sysBusiness = sysBusinessDao.findOne(oldWarn.getSysId(),oldWarn.getWarnType(),oldWarn.getFindTime());
+        SysBusiness record = sysBusiness;
+        record.setScanTime(now);
+        sysBusinessDao.insert(record);
+        record = sysBusinessDao.findOne(oldWarn.getSysId(),oldWarn.getWarnType(),now);
+        sysBusinessDao.updateOne(record.getId(),oldWarn.getWarnType(),now);
         warnDao.updateConfirm(id,now,fixType);
     }
 

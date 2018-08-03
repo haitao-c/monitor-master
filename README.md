@@ -58,7 +58,7 @@
 下午：
  完成手动修复时warn表格的更新以及对应sys_device_items表的插入记录
 
-###7/25
+### 7/25
 
 上午：
 1. LocalDatetime等新时间包中的类的精确值是纳秒(nano second)
@@ -82,3 +82,11 @@
 下午：
 1. 查询告警记录时按最近的时间先展示
 2. 对总记录查询设置分页展示, 默认每页展示5条
+
+### 8/2
+上午:
+1. 删除sys_device_items表中business_status字段; 在warn表中增加warn_level字段表示告警级别;
+   新增sys_business表代表业务状态监控项; 同时修改db.migration对应sql
+2. 修改对应model
+   
+   

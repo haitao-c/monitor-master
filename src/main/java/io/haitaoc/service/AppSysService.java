@@ -20,7 +20,7 @@ public interface AppSysService {
     /**
      * 查询所有的每个系统对应的所有设备和监控项
      */
-    List<AppSys> getAllSysAndDeviceItems();
+    List<AppSys> getAllSysInfo();
 
 
     /**

@@ -2,7 +2,6 @@ package io.haitaoc.dao;
 
 
 import io.haitaoc.dao.provider.SysDeviceItemsDaoProvider;
-import io.haitaoc.dao.provider.WarnDaoProvider;
 import io.haitaoc.model.SysDeviceItems;
 import org.apache.ibatis.annotations.*;
 
