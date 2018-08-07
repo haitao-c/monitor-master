@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @EnableAutoConfiguration
@@ -14,6 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan(basePackages = "io.haitaoc.dao")
 @EnableScheduling       // 启动定时任务
 @SpringBootApplication
+@EnableSwagger2         // 启用Swagger2
 public class MonitorApplication {
     public static void main(String[] args) {
         SpringApplication.run(MonitorApplication.class,args);

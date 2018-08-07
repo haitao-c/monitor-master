@@ -3,6 +3,7 @@ package io.haitaoc.util;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 用于数据模拟时对告警类型状态的映射设置 */
 public class WarnTypeStatusMapUtil {
 
     Map<String,String> map = new HashMap<>();

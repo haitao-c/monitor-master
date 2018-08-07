@@ -14,13 +14,7 @@ import org.springframework.stereotype.Component;
 /**
  *
  * @Title: LogServiceTakeTime.java
- * @Package com.itzixi.web.component
  * @Description: service的方法执行需要多少时间统计
- * Copyright: Copyright (c) 2016
- * Company:FURUIBOKE.SCIENCE.AND.TECHNOLOGY
- *
- * @author leechenxiang
- * @date 2017年4月10日 下午3:21:25
  * @version V1.0
  */
 @Aspect

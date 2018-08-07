@@ -3,6 +3,7 @@ package io.haitaoc.util;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 用于映射设备IP以及到对应的系统分类 */
 public class DeviceSysIdMapUtil {
     Map<String, Integer> map = new HashMap<>();
 
